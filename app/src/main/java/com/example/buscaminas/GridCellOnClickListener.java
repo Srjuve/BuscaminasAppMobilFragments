@@ -99,9 +99,9 @@ public class GridCellOnClickListener implements View.OnClickListener{
         TextView time_value_view = (TextView)v.getRootView().findViewById(R.id.time_text);
         int time_counter = Integer.parseInt(time_value_view.getText().toString());
         if(timer!=null) {
-            data.putExtra("LogData", "Alias: " + this.alias + " Casillas: " + String.valueOf(this.minePercentage) + "% Minas: " + String.valueOf(this.num_mines) + " Tiempo Total: " + String.valueOf(this.maxTime - time_counter) + " Has ganado!! Te han sobrado " + String.valueOf(time_counter) + " Secs");
+            data.putExtra(actualContext.getString(R.string.End_log_data_key), actualContext.getString(R.string.victory_time_check_message,this.alias,String.valueOf(this.minePercentage)+"%",this.num_mines,this.maxTime-time_counter,time_counter));
         }else{
-            data.putExtra("LogData", "Alias: " + this.alias + " Casillas: " + String.valueOf(this.minePercentage) + "% Minas: " + String.valueOf(this.num_mines) + " Tiempo Total: " + String.valueOf(this.maxTime - time_counter) + " Has ganado!!");
+            data.putExtra(actualContext.getString(R.string.End_log_data_key), actualContext.getString(R.string.victory_not_time_check_message,this.alias,String.valueOf(this.minePercentage)+"%",this.num_mines,this.maxTime-time_counter));
         }
     }
 
@@ -110,7 +110,7 @@ public class GridCellOnClickListener implements View.OnClickListener{
         createToast(actualContext.getString(R.string.Defeat_Message));
         TextView time_value_view = (TextView)v.getRootView().findViewById(R.id.time_text);
         int time_counter = Integer.parseInt(time_value_view.getText().toString());
-        data.putExtra("LogData","Alias: "+this.alias+" Casillas: "+ String.valueOf(this.minePercentage)+"% Minas: "+ String.valueOf(this.num_mines) +" Tiempo Total: "+String.valueOf(this.maxTime - time_counter)+ " Has perdido!! Bomba en casilla "+ String.valueOf(x)+","+String.valueOf(y)+" Te han quedado "+ this.gameInstance.getUndiscoveredCount() +" casillas por descubrir");
+        data.putExtra(actualContext.getString(R.string.End_log_data_key),actualContext.getString(R.string.defeat_check_message,this.alias,String.valueOf(this.minePercentage)+"%",this.num_mines,this.maxTime-time_counter,x,y,this.gameInstance.getUndiscoveredCount()));
     }
 
     private void createToast(String message){
@@ -140,12 +140,12 @@ public class GridCellOnClickListener implements View.OnClickListener{
 
     private void changeCellsCountState(View v){
         TextView undiscovered_view = (TextView)v.getRootView().findViewById(R.id.undiscovered_text);
-        undiscovered_view.setText(String.valueOf(this.gameInstance.getUndiscoveredCount())+" casillas por descubrir");
+        undiscovered_view.setText(actualContext.getString(R.string.cells_to_discover,this.gameInstance.getUndiscoveredCount()));
     }
 
     private void setDayHourData(Intent data){
         Calendar calendar = Calendar.getInstance();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy HH:mm:ss");
+        SimpleDateFormat dateFormat = new SimpleDateFormat(actualContext.getString(R.string.date_format));
         data.putExtra(actualContext.getString(R.string.EndInfo_timeData_key),dateFormat.format(calendar.getTime()));
     }
 

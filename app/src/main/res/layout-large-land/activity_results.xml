@@ -72,7 +72,7 @@
             android:id="@+id/time_values"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textSize="36sp"
+            android:textSize="30sp"
             android:layout_weight="1" />
     </LinearLayout>
 
@@ -144,7 +144,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="@string/dest_mail_placeholder"
-            android:textSize="36sp" />
+            android:textSize="30sp" />
     </LinearLayout>
 
     <Button

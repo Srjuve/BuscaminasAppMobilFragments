@@ -44,13 +44,13 @@ public class GridFrag extends Fragment{
         if(savedInstanceState==null) {
             //If we do not restore a game activity instance we create/get the needed data
             Intent data = getActivity().getIntent();
-            this.numColums = data.getIntExtra("gridsize", 5);
-            this.minePercentage = data.getIntExtra("minePercentage",15);
-            this.checkTime = data.getBooleanExtra("timeControl",false);
-            this.alias = data.getStringExtra("alias");
+            this.numColums = data.getIntExtra(getString(R.string.gridsize_key), 5);
+            this.minePercentage = data.getIntExtra(getString(R.string.mine_percent_key),15);
+            this.checkTime = data.getBooleanExtra(getString(R.string.time_control_key),false);
+            this.alias = data.getStringExtra(getString(R.string.alias_key));
             this.num_mines = this.numColums*this.numColums*this.minePercentage/100;
             this.gameInstance = createGameInstance(data);
-            this.time_counter=30;
+            this.time_counter=getResources().getInteger(R.integer.time_limit);
             this.maxTime=this.time_counter;
             this.startDate = new Date();
         }
@@ -72,12 +72,14 @@ public class GridFrag extends Fragment{
 
     public void restoreInstanceState(Bundle savedInstanceState, View view){
         //We restore the data of an already created instance
-        this.gameInstance = (MineSearchGame)savedInstanceState.getSerializable("SavedGameState");
-        this.maxTime = savedInstanceState.getInt("max_time");
+        this.gameInstance = (MineSearchGame)savedInstanceState.getSerializable(getString(R.string.saved_game_state_key));
+        this.maxTime = savedInstanceState.getInt(getString(R.string.max_time_key));
         this.numColums = this.gameInstance.getGridSize();
-        this.checkTime = savedInstanceState.getBoolean("check_time");
-        this.time_counter = savedInstanceState.getInt("time_counter");
-        this.startDate = (Date)savedInstanceState.getSerializable("startDate");
+        this.minePercentage = savedInstanceState.getInt(getString(R.string.mine_percent_key));
+        this.num_mines = this.numColums*this.numColums*this.minePercentage/100;
+        this.checkTime = savedInstanceState.getBoolean(getString(R.string.check_time_key));
+        this.time_counter = savedInstanceState.getInt(getString(R.string.time_counter_key));
+        this.startDate = (Date)savedInstanceState.getSerializable(getString(R.string.start_date_key));
         TextView time_view = view.findViewById(R.id.time_text);
         TextView time_following_text = view.findViewById(R.id.seconds_text);
         if(this.checkTime){
@@ -90,11 +92,12 @@ public class GridFrag extends Fragment{
             createSimpleTimer(view);
         }
         TextView undiscovered_view = view.findViewById(R.id.undiscovered_text);
-        undiscovered_view.setText(String.valueOf(this.gameInstance.getUndiscoveredCount())+" casillas por descubrir");
+        undiscovered_view.setText(getString(R.string.cells_to_discover,this.gameInstance.getUndiscoveredCount()));
         startGridView(view, (GridCellOnClickListener.GameClickListener) getActivity());
     }
 
     public void startGame(GridCellOnClickListener.GameClickListener listener){
+        //Start a new game(Without being recovered)
         TextView time_view = getView().findViewById(R.id.time_text);
         TextView time_following_text = getView().findViewById(R.id.seconds_text);
         if(this.checkTime){
@@ -107,7 +110,7 @@ public class GridFrag extends Fragment{
             createSimpleTimer(getView());
         }
         TextView undiscovered_view = (TextView)getView().findViewById(R.id.undiscovered_text);
-        undiscovered_view.setText(String.valueOf(this.gameInstance.getUndiscoveredCount())+" casillas por descubrir");
+        undiscovered_view.setText(getString(R.string.cells_to_discover,this.gameInstance.getUndiscoveredCount()));//String.valueOf(this.gameInstance.getUndiscoveredCount())+" casillas por descubrir");
         startGridView(getView(),listener);
     }
 
@@ -137,9 +140,7 @@ public class GridFrag extends Fragment{
         //Create timer when we do need to control the time
         MineSearchGame game = this.gameInstance;
         String minePercentage = String.valueOf(this.minePercentage)+"%";
-        int max_time = this.time_counter;
-        String num_mines = String.valueOf(this.num_mines);
-        Context actualContext = getActivity();
+        int max_time = this.time_counter;;
         Activity context = getActivity();
         this.timer=new CountDownTimer(this.time_counter*1000,1000) {
             @Override
@@ -163,14 +164,14 @@ public class GridFrag extends Fragment{
 
             @Override
             public void onFinish() {
-                createToast("Tiempo agotado!.Repite suerte...");
+                createToast(getString(R.string.Time_exceeded_Message));
                 String alias = gameInstance.getUserAlias();
-                String timeTaken = String.valueOf(max_time-time_counter);
+                int timeTaken = max_time-time_counter;
                 Intent data = new Intent(getActivity(),EndInfoActivity.class);
                 data.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                String undiscovered = String.valueOf(gameInstance.getUndiscoveredCount());
+                int undiscovered = gameInstance.getUndiscoveredCount();
                 setDayHourData(data);
-                data.putExtra("LogData","Alias: "+alias+" Casillas: "+ minePercentage +" Minas: "+ num_mines +" Tiempo Total: "+ timeTaken+ " Has agotado el tiempo!! Te han quedado "+ undiscovered +" casillas por descubrir" );
+                data.putExtra(getString(R.string.End_log_data_key),getString(R.string.timeout_log_message,alias,minePercentage,num_mines,timeTaken,undiscovered));
                 startActivity(data);
                 getActivity().finish();
             }
@@ -198,12 +199,13 @@ public class GridFrag extends Fragment{
     public void onSaveInstanceState(Bundle savedInstanceState){
         //We save some needed data like game state, time, etc
         super.onSaveInstanceState(savedInstanceState);
-        savedInstanceState.putSerializable("SavedGameState",this.gameInstance);
+        savedInstanceState.putSerializable(getString(R.string.saved_game_state_key),this.gameInstance);
         TextView time = getView().findViewById(R.id.time_text);
-        savedInstanceState.putInt("time_counter",Integer.parseInt(time.getText().toString()));
-        savedInstanceState.putBoolean("check_time",this.checkTime);
-        savedInstanceState.putInt("max_time",this.maxTime);
-        savedInstanceState.putSerializable("startDate",this.startDate);
+        savedInstanceState.putInt(getString(R.string.time_counter_key),Integer.parseInt(time.getText().toString()));
+        savedInstanceState.putBoolean(getString(R.string.check_time_key),this.checkTime);
+        savedInstanceState.putInt(getString(R.string.max_time_key),this.maxTime);
+        savedInstanceState.putInt(getString(R.string.mine_percent_key),this.minePercentage);
+        savedInstanceState.putSerializable(getString(R.string.start_date_key),this.startDate);
         if(this.checkTime){
             this.timer.cancel();
         }else{
@@ -216,7 +218,7 @@ public class GridFrag extends Fragment{
 
     private void setDayHourData(Intent data){
         Calendar calendar = Calendar.getInstance();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy HH:mm:ss");
+        SimpleDateFormat dateFormat = new SimpleDateFormat(getActivity().getString(R.string.date_format));
         data.putExtra(getActivity().getString(R.string.EndInfo_timeData_key),dateFormat.format(calendar.getTime()));
     }
 

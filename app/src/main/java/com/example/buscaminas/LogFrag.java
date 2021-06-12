@@ -43,25 +43,26 @@ public class LogFrag extends Fragment {
         startLogView(view);
         if(savedInstanceState!=null) {
             TextView log_data_view = view.findViewById(R.id.log_events);
-            log_data_view.setText(savedInstanceState.getString("log_data"));
+            log_data_view.setText(savedInstanceState.getString(getString(R.string.LogData_key)));
         }
 
         return view;
     }
 
     private void startLogView(View view){
+        //Start the log view(Without being recovered)
         TextView log_data = view.findViewById(R.id.log_initialInfo);
         Intent data = getActivity().getIntent();
-        this.numColums = data.getIntExtra("gridsize", 5);
-        this.minePercentage = data.getIntExtra("minePercentage",15);
-        this.checkTime = data.getBooleanExtra("timeControl",false);
-        this.alias = data.getStringExtra("alias");
+        this.numColums = data.getIntExtra(getString(R.string.gridsize_key), 5);
+        this.minePercentage = data.getIntExtra(getString(R.string.mine_percent_key),15);
+        this.checkTime = data.getBooleanExtra(getString(R.string.time_control_key),false);
+        this.alias = data.getStringExtra(getString(R.string.alias_key));
         this.num_mines = this.numColums*this.numColums*this.minePercentage/100;
-        String logTitle = "Alias: "+alias +" Casillas: "+minePercentage+"% Minas: "+this.num_mines+"\n";
+        String logTitle = getString(R.string.log_view_start_text,alias,minePercentage+"%",this.num_mines);
         if(this.checkTime){
-            logTitle+="Control de temps";
+            logTitle+=getString(R.string.time_control_enabled);
         }else{
-            logTitle+="Sense control de temps";
+            logTitle+=getString(R.string.time_control_disabled);
         }
         log_data.setText(logTitle);
         TextView log_data_view = view.findViewById(R.id.log_events);
@@ -70,19 +71,19 @@ public class LogFrag extends Fragment {
 
 
     public void setLogData(int position, Date startDate, Date endDate){
-        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
+        SimpleDateFormat formatter = new SimpleDateFormat(getString(R.string.simple_date_format));
         TextView log_data_view = getView().findViewById(R.id.log_events);
         String last_log_data = log_data_view.getText().toString();
         log_data_view.setText(last_log_data+String.valueOf(position)+"\n"+formatter.format(startDate)+"\n"+formatter.format(endDate)+"\n");
     }
 
     public void setLogData(int position, Date startDate, Date endDate, int current_time){
-        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
+        SimpleDateFormat formatter = new SimpleDateFormat(getString(R.string.simple_date_format));
         int x=position/numColums;
         int y=position%numColums;
         TextView log_data_view = getView().findViewById(R.id.log_events);
         String last_log_data = log_data_view.getText().toString();
-        log_data_view.setText(last_log_data+"("+String.valueOf(x)+","+String.valueOf(y)+")\n"+formatter.format(startDate)+"\n"+formatter.format(endDate)+"\n"+"Temps restant = "+String.valueOf(current_time)+"\n");
+        log_data_view.setText(last_log_data+getString(R.string.log_text,String.valueOf(x),String.valueOf(y),formatter.format(startDate),formatter.format(endDate),String.valueOf(current_time)));
     }
 
     @Override
@@ -90,6 +91,6 @@ public class LogFrag extends Fragment {
         //We save some needed data like game state, time, etc
         super.onSaveInstanceState(savedInstanceState);
         TextView log_data_view = getView().findViewById(R.id.log_events);
-        savedInstanceState.putString("log_data",log_data_view.getText().toString());
+        savedInstanceState.putString(getString(R.string.LogData_key),log_data_view.getText().toString());
     }
 }

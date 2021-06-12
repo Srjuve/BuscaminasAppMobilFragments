@@ -38,11 +38,11 @@ public class GameConfigActivity extends Activity implements View.OnClickListener
         }else {
             Intent in = new Intent(this, GameActivity.class);
             in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-            in.putExtra("alias",newAlias);
-            in.putExtra("gridsize",getGridSize(gridsizeChecked));
-            in.putExtra("minePercentage",getPercentage(minePercentageChecked));
+            in.putExtra(getString(R.string.alias_key),newAlias);
+            in.putExtra(getString(R.string.gridsize_key),getGridSize(gridsizeChecked));
+            in.putExtra(getString(R.string.mine_percent_key),getPercentage(minePercentageChecked));
             if(timeControl.isChecked())
-                in.putExtra("timeControl",true);
+                in.putExtra(getString(R.string.time_control_key),true);
             startActivity(in);
             finish();
         }

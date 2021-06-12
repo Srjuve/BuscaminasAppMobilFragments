@@ -20,7 +20,7 @@ public class EndInfoActivity extends Activity implements View.OnClickListener {
         setContentView(R.layout.activity_results);
         Intent data = getIntent();
         String DayHourData = data.getStringExtra(getApplicationContext().getString(R.string.EndInfo_timeData_key));
-        String LogData = data.getStringExtra("LogData");
+        String LogData = data.getStringExtra(getApplicationContext().getString(R.string.End_log_data_key));
 
         TextView DayHourTextView = findViewById(R.id.time_values);
         TextView LogTextView = findViewById(R.id.log_values);
@@ -43,13 +43,13 @@ public class EndInfoActivity extends Activity implements View.OnClickListener {
         switch(v.getId()){
             case R.id.send_mail_button:
                 Intent in = new Intent(Intent.ACTION_SENDTO);
-                in.setType("text/plain");
-                in.setData(Uri.parse("mailto:"));
+                in.setType(getString(R.string.mail_type));
+                in.setData(Uri.parse(getString(R.string.mail_uri_data)));
                 TextView mailreView = findViewById(R.id.mail_re);
                 TextView LogTextView = findViewById(R.id.log_values);
                 TextView DayHourView = findViewById(R.id.time_values);
                 in.putExtra(Intent.EXTRA_EMAIL,new String[]{mailreView.getText().toString()}); //Modificar destinatari
-                in.putExtra(Intent.EXTRA_SUBJECT,"Game Result");
+                in.putExtra(Intent.EXTRA_SUBJECT,getString(R.string.mail_subject));
                 in.putExtra(Intent.EXTRA_TEXT,DayHourView.getText().toString()+" "+LogTextView.getText().toString());
                 startActivity(in);
                 break;

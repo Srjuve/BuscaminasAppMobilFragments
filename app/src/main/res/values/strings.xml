@@ -37,5 +37,32 @@
     <string name="Game_Title">PRUEBA</string>
     <string name="Defeat_Message">GAME OVER... MALA SUERTE, HAS PERDIDO !!</string>
     <string name="Victory_Message">GAME OVER... BIEN HECHO, HAS GANADO !!</string>
+    <string name="Time_exceeded_Message">Tiempo agotado!.Repite suerte...</string>
     <string name="EndInfo_timeData_key">DayHourData</string>
+    <string name="gridsize_key">gridsize</string>
+    <string name="alias_key">alias</string>
+    <string name="LogData_key">log_data</string>
+    <string name="End_log_data_key">LogData</string>
+    <string name="mine_percent_key">minePercentage</string>
+    <string name="saved_game_state_key">SavedGameState</string>
+    <string name="max_time_key">max_time</string>
+    <string name="start_date_key">startDate</string>
+    <string name="time_counter_key">time_counter</string>
+    <string name="check_time_key">check_time</string>
+    <string name="time_control_key">timeControl</string>
+    <string name="time_control_enabled">Control de temps</string>
+    <string name="time_control_disabled">Sense control de temps</string>
+    <string name="cells_to_discover">%1$d casillas por descubrir</string>
+    <string name="timeout_log_message">Alias: %1$s Casillas: %2$s Minas: %3$d Tiempo Total: %4$d Has agotado el tiempo!! Te han quedado %5$d casillas por descubrir</string>
+    <string name="victory_time_check_message">"Alias: %1$s Casillas: %2$s Minas: %3$d Tiempo Total: %4$d Has ganado!! Te han sobrado %5$d Secs"</string>
+    <string name="victory_not_time_check_message">Alias: %1$s Casillas: %2$s Minas: %3$d Tiempo Total:  %4$d Has ganado!!</string>
+    <string name="defeat_check_message">Alias: %1$s Casillas: %2$s Minas: %3$d Tiempo Total: %4$d Has perdido!! Bomba en casilla %5$d,%6$d Te han quedado %7$d casillas por descubrir</string>
+    <string name="date_format">MM-dd-yyyy HH:mm:ss</string>
+    <string name="simple_date_format">HH:mm:ss</string>
+    <string name="log_view_start_text">"Alias: %1$s Casillas: %2$s Minas: %3$d \n"</string>
+    <string name="log_text">(%1$s,%2$s) \n%3$s \n%4$s \nTemps restant = %5$s \n"</string>
+    <string name="mail_type">text/plain</string>
+    <string name="mail_uri_data">mailto:</string>
+    <string name="mail_subject">Game Result</string>
+
 </resources>
