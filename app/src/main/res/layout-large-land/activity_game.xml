@@ -9,23 +9,20 @@
     <fragment
         android:id="@+id/game_frag"
         class="com.example.buscaminas.fragments.GridFrag"
-        android:layout_width="match_parent"
-        android:layout_height="480dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="840dp"
+        android:layout_height="473dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <fragment
         android:id="@+id/log_frag"
         class="com.example.buscaminas.fragments.LogFrag"
-        android:layout_width="match_parent"
-        android:layout_height="350dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="868dp"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/game_frag"
+        app:layout_constraintStart_toEndOf="@+id/game_frag"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.28"
         tools:layout="@layout/logfrag" />
 </androidx.constraintlayout.widget.ConstraintLayout>

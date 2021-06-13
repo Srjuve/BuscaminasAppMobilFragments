@@ -5,6 +5,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="98dp"
+        android:background="#FCFCFC"
+        android:backgroundTint="#8BC34A"
+        android:backgroundTintMode="src_in"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
         android:id="@+id/log_initialInfo"
@@ -16,13 +27,13 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         app:layout_constraintVertical_bias="0.042" />
 
     <TextView
         android:id="@+id/log_events"
-        android:layout_width="348dp"
-        android:layout_height="200dp"
+        android:layout_width="358dp"
+        android:layout_height="232dp"
         android:layout_marginTop="12dp"
         android:scrollbars="vertical"
         android:text=""
