@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/game_frag"
-        class="com.example.buscaminas.GridFrag"
+        class="com.example.buscaminas.fragments.GridFrag"
         android:layout_width="match_parent"
         android:layout_height="480dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -17,7 +17,7 @@
 
     <fragment
         android:id="@+id/log_frag"
-        class="com.example.buscaminas.LogFrag"
+        class="com.example.buscaminas.fragments.LogFrag"
         android:layout_width="match_parent"
         android:layout_height="350dp"
         android:layout_marginTop="32dp"

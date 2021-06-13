@@ -11,17 +11,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Buscaminas">
-        <activity android:name=".MainActivity">
+        <activity android:name=".gameactivities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".HelpActivity"/>
-        <activity android:name=".GameConfigActivity"/>
-        <activity android:name=".GameActivity"/>
-        <activity android:name=".EndInfoActivity"/>
+        <activity android:name=".gameactivities.HelpActivity"/>
+        <activity android:name=".gameactivities.GameConfigActivity"/>
+        <activity android:name=".gameactivities.GameActivity"/>
+        <activity android:name=".gameactivities.EndInfoActivity"/>
     </application>
 
 </manifest>

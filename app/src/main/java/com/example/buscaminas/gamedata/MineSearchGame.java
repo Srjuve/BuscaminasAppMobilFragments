@@ -1,4 +1,4 @@
-package com.example.buscaminas;
+package com.example.buscaminas.gamedata;
 
 import java.io.Serializable;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.example.buscaminas;
+package com.example.buscaminas.listeners;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -8,12 +8,15 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.os.Handler;
+
+import com.example.buscaminas.adapters.CustomButtonAdapter;
+import com.example.buscaminas.gameactivities.EndInfoActivity;
+import com.example.buscaminas.gamedata.MineSearchGame;
+import com.example.buscaminas.R;
+
 import java.text.SimpleDateFormat;
-import java.time.LocalTime;
 import java.util.Calendar;
 import java.util.Timer;
 import java.util.Date;
@@ -87,7 +90,7 @@ public class GridCellOnClickListener implements View.OnClickListener{
     }
 
     private Intent initEndIntent(){
-        Intent data = new Intent(this.actualContext,EndInfoActivity.class);
+        Intent data = new Intent(this.actualContext, EndInfoActivity.class);
         data.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         setDayHourData(data);
         return data;

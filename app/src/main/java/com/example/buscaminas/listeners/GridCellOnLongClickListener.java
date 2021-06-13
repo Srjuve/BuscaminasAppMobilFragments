@@ -1,11 +1,10 @@
-package com.example.buscaminas;
+package com.example.buscaminas.listeners;
 
 import android.app.Activity;
-import android.os.CountDownTimer;
 import android.view.View;
-import android.widget.Toast;
 
-import java.util.Timer;
+import com.example.buscaminas.adapters.CustomButtonAdapter;
+import com.example.buscaminas.gamedata.MineSearchGame;
 
 public class GridCellOnLongClickListener implements View.OnLongClickListener {
     Activity actualContext;

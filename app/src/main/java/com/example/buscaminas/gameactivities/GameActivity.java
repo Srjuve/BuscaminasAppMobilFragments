@@ -1,9 +1,15 @@
-package com.example.buscaminas;
+package com.example.buscaminas.gameactivities;
 
 
 import android.os.Bundle;
 
 import androidx.fragment.app.FragmentActivity;
+
+import com.example.buscaminas.R;
+import com.example.buscaminas.fragments.GridFrag;
+import com.example.buscaminas.fragments.LogFrag;
+import com.example.buscaminas.listeners.GridCellOnClickListener;
+
 import java.util.Date;
 
 public class GameActivity extends FragmentActivity implements GridCellOnClickListener.GameClickListener {

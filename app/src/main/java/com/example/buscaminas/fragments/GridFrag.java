@@ -1,6 +1,5 @@
-package com.example.buscaminas;
+package com.example.buscaminas.fragments;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -8,17 +7,22 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.core.content.ContextCompat;
 import android.app.Fragment;
+
+import com.example.buscaminas.adapters.CustomButtonAdapter;
+import com.example.buscaminas.gameactivities.EndInfoActivity;
+import com.example.buscaminas.gamedata.MineSearchGame;
+import com.example.buscaminas.R;
+import com.example.buscaminas.listeners.GridCellOnClickListener;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -167,7 +171,7 @@ public class GridFrag extends Fragment{
                 createToast(getString(R.string.Time_exceeded_Message));
                 String alias = gameInstance.getUserAlias();
                 int timeTaken = max_time-time_counter;
-                Intent data = new Intent(getActivity(),EndInfoActivity.class);
+                Intent data = new Intent(getActivity(), EndInfoActivity.class);
                 data.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 int undiscovered = gameInstance.getUndiscoveredCount();
                 setDayHourData(data);

@@ -1,4 +1,4 @@
-package com.example.buscaminas;
+package com.example.buscaminas.adapters;
 
 import android.app.Activity;
 import android.content.Context;
@@ -6,15 +6,16 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.GridView;
-import android.widget.TextView;
 
-import java.util.ArrayList;
+import com.example.buscaminas.gamedata.MineSearchGame;
+import com.example.buscaminas.R;
+import com.example.buscaminas.listeners.GridCellOnClickListener;
+import com.example.buscaminas.listeners.GridCellOnLongClickListener;
+
 import java.util.Date;
-import java.util.List;
 
 public class CustomButtonAdapter extends BaseAdapter {
     Context context;

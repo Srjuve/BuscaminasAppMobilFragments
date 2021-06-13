@@ -1,6 +1,5 @@
-package com.example.buscaminas;
+package com.example.buscaminas.gameactivities;
 
-import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,9 +7,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
+
+import com.example.buscaminas.R;
+import com.example.buscaminas.gameactivities.GameActivity;
 
 public class GameConfigActivity extends Activity implements View.OnClickListener {
     @Override

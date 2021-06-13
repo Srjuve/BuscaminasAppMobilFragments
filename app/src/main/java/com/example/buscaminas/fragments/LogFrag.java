@@ -1,4 +1,4 @@
-package com.example.buscaminas;
+package com.example.buscaminas.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +15,8 @@ import android.app.Fragment;
 import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.buscaminas.R;
 
 import java.util.Timer;
 
